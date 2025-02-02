@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <filesystem>
 
 #include <stb_image/stb_image.h>
 
@@ -46,14 +47,16 @@ void ResourceManager::Clear()
 Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile)
 {
     // 1. retrieve the vertex/fragment source code from filePath
+    std::string shaderRelativePath = "\\resources\\shaders\\";
+    std::string currentPath = std::filesystem::current_path().string() + shaderRelativePath;
     std::string vertexCode;
     std::string fragmentCode;
     std::string geometryCode;
     try
     {
         // open files
-        std::ifstream vertexShaderFile(vShaderFile);
-        std::ifstream fragmentShaderFile(fShaderFile);
+        std::ifstream vertexShaderFile(currentPath + vShaderFile);
+        std::ifstream fragmentShaderFile(currentPath + fShaderFile);
         std::stringstream vShaderStream, fShaderStream;
         // read file's buffer contents into streams
         vShaderStream << vertexShaderFile.rdbuf();
@@ -67,7 +70,7 @@ Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* 
         // if geometry shader path is present, also load a geometry shader
         if (gShaderFile != nullptr)
         {
-            std::ifstream geometryShaderFile(gShaderFile);
+            std::ifstream geometryShaderFile(currentPath + gShaderFile);
             std::stringstream gShaderStream;
             gShaderStream << geometryShaderFile.rdbuf();
             geometryShaderFile.close();
@@ -96,9 +99,11 @@ Texture2D ResourceManager::loadTextureFromFile(const char* file, bool alpha)
         texture.Internal_Format = GL_RGBA;
         texture.Image_Format = GL_RGBA;
     }
+
+    std::string path = std::filesystem::current_path().string() + "/" + file;
     // load image
     int width, height, nrChannels;
-    unsigned char* data = stbi_load(file, &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
     // now generate texture
     texture.Generate(width, height, data);
     // and finally free image data

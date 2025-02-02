@@ -3,6 +3,8 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "camera.h"
+#include "resourceManager.h"
 
 // Represents the current state of the game
 enum GameState {
@@ -23,6 +25,12 @@ public:
     bool                    OldKeys[1024];
     unsigned int            Width, Height;
     GLFWwindow*             Window;
+
+    // Camera
+    Camera camera;
+    float mouseXPos, mouseLastXPos, mouseYPos, mouseLastYPos;
+    bool firstMouse = true;
+
     // constructor/destructor
     Game(unsigned int width, unsigned int height);
     ~Game();

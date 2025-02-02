@@ -50,5 +50,12 @@
     <ClInclude Include="src\resourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\shader.vs" />
+    <None Include="resources\shaders\shader.fs" />
   </ItemGroup>
 </Project>
