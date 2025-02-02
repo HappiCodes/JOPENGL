@@ -5,6 +5,7 @@
 #include <GLFW/glfw3.h>
 #include "camera.h"
 #include "resourceManager.h"
+#include "model.h"
 
 // Represents the current state of the game
 enum GameState {
@@ -25,7 +26,8 @@ public:
     bool                    OldKeys[1024];
     unsigned int            Width, Height;
     GLFWwindow*             Window;
-
+    // Temp
+    Model* ourModel = nullptr;
     // Camera
     Camera camera;
     float mouseXPos, mouseLastXPos, mouseYPos, mouseLastYPos;

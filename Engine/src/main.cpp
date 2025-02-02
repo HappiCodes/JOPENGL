@@ -3,6 +3,7 @@
 
 #include "game.h"
 #include "resourceManager.h"
+#include "model.h"
 
 #include <iostream>
 #include <stb_image/stb_image.h>
@@ -61,27 +62,21 @@ int main(int argc, char* argv[])
 
     // configure global opengl state
     // -----------------------------
+    stbi_set_flip_vertically_on_load(true);
     glEnable(GL_DEPTH_TEST);
+
 
     // build and compile our shader zprogram
     // ------------------------------------
     ResourceManager::LoadShader("shader.vs", "shader.fs", nullptr, "Shader");
 
-    // load and create a texture 
-    // -------------------------
-    ResourceManager::LoadTexture("resources/textures/Rachel.png", true, "Rachel");
-    ResourceManager::LoadTexture("resources/textures/Rachel1.png", true, "Rachel1");
-
-    // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
-    // -------------------------------------------------------------------------------------------
-    ResourceManager::GetShader("Shader").Use();
-    ResourceManager::GetShader("Shader").SetInteger("texture1", ResourceManager::GetTexture("Rachel").ID);
-    ResourceManager::GetShader("Shader").SetInteger("texture2", ResourceManager::GetTexture("Rachel1").ID);
+    
 
     // initialize game
     // ---------------
     FPS.Init();
     FPS.Window = window;
+    FPS.ourModel = new Model("backpack/backpack.obj");
 
     // deltaTime variables
     // -------------------
