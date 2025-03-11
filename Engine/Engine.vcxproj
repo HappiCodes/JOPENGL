@@ -165,13 +165,18 @@
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\mesh.h" />
     <ClInclude Include="src\model.h" />
+    <ClInclude Include="src\prefab.h" />
     <ClInclude Include="src\resourceManager.h" />
     <ClInclude Include="src\shader.h" />
     <ClInclude Include="src\texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="resources\shaders\prefab.fs" />
+    <None Include="resources\shaders\prefab.vs" />
     <None Include="resources\shaders\shader.fs" />
     <None Include="resources\shaders\shader.vs" />
+    <None Include="resources\shaders\skybox.fs" />
+    <None Include="resources\shaders\skybox.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

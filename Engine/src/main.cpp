@@ -69,14 +69,14 @@ int main(int argc, char* argv[])
     // build and compile our shader zprogram
     // ------------------------------------
     ResourceManager::LoadShader("shader.vs", "shader.fs", nullptr, "Shader");
-
-    
+    ResourceManager::LoadShader("prefab.vs", "prefab.fs", nullptr, "Prefab");
 
     // initialize game
     // ---------------
     FPS.Init();
     FPS.Window = window;
     FPS.ourModel = new Model("backpack/backpack.obj");
+
 
     // deltaTime variables
     // -------------------
@@ -102,9 +102,10 @@ int main(int argc, char* argv[])
 
         // render
         // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         FPS.Render();
+
 
         glfwSwapBuffers(window);
     }

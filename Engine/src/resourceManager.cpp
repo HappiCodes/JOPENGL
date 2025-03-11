@@ -100,10 +100,13 @@ Texture2D ResourceManager::loadTextureFromFile(const char* file, bool alpha)
         texture.Image_Format = GL_RGBA;
     }
 
-    std::string path = std::filesystem::current_path().string() + "/" + file;
+    std::string shaderRelativePath = "\\resources\\textures\\";
+    std::string path = std::filesystem::current_path().string() + shaderRelativePath + file;
+    std::cout << path << '\n';
     // load image
     int width, height, nrChannels;
     unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+    if (!data) std::cout << "ERROR::NODATA::" << path << '\n';
     // now generate texture
     texture.Generate(width, height, data);
     // and finally free image data

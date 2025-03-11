@@ -6,6 +6,7 @@
 #include "camera.h"
 #include "resourceManager.h"
 #include "model.h"
+#include "prefab.h"
 
 // Represents the current state of the game
 enum GameState {
@@ -28,10 +29,14 @@ public:
     GLFWwindow*             Window;
     // Temp
     Model* ourModel = nullptr;
+    Prefab* cubePrefab = nullptr;
     // Camera
     Camera camera;
     float mouseXPos, mouseLastXPos, mouseYPos, mouseLastYPos;
     bool firstMouse = true;
+
+    // Renderer
+    bool wireFrameDrawMode = false;
 
     // constructor/destructor
     Game(unsigned int width, unsigned int height);

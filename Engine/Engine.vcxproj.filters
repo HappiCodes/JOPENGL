@@ -62,9 +62,16 @@
     <ClInclude Include="src\model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\prefab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\shader.vs" />
     <None Include="resources\shaders\shader.fs" />
+    <None Include="resources\shaders\prefab.fs" />
+    <None Include="resources\shaders\prefab.vs" />
+    <None Include="resources\shaders\skybox.fs" />
+    <None Include="resources\shaders\skybox.vs" />
   </ItemGroup>
 </Project>
